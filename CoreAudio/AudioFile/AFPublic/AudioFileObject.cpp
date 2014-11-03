@@ -1348,7 +1348,7 @@ OSStatus	AudioFileObject::GetProperty(
 			
 		case kAudioFilePropertyRegionList :
 			memset(ioPropertyData, 0, *ioDataSize);
-            err = GetRegionList(ioDataSize, static_cast<AudioFileRegionList*>(ioPropertyData));			
+            err = GetRegionList(ioDataSize, static_cast<AudioFileRegionList*>(ioPropertyData));
 			break;
 			
 		case kAudioFilePropertyChannelLayout :

@@ -560,7 +560,7 @@ Seekable_DataSource::Seekable_DataSource(	void * inClientData,
 							AudioFile_GetSizeProc				inGetSizeFunc,
 							AudioFile_SetSizeProc				inSetSizeFunc)
 	: DataSource(false), mClientData(inClientData), mReadFunc(inReadFunc), mWriteFunc(inWriteFunc), 
-		mSizeFunc(inGetSizeFunc), mSetSizeFunc(inSetSizeFunc)
+		mSizeFunc(inGetSizeFunc), mSetSizeFunc(inSetSizeFunc), mOffset(0)
 {
 }
 
