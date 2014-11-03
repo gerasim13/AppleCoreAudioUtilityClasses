@@ -162,7 +162,7 @@ public:
 							return (SynthNote*)((char*)mNotes + inIndex * mNoteSize); 
 						}
 	
-	virtual SynthNote*  GetAFreeNote(UInt32 inFrame);
+	SynthNote*			GetAFreeNote(UInt32 inFrame);
 	void				AddFreeNote(SynthNote* inNote);
 	
 	friend class SynthGroupElement;
@@ -190,8 +190,8 @@ protected:
 	virtual SynthGroupElement *	GetElForGroupID (MusicDeviceGroupID	inGroupID);
 	virtual SynthGroupElement *	GetElForNoteID (NoteInstanceID inNoteID);
 
-	SInt64        mAbsoluteSampleFrame;
-    SynthNoteList mFreeNotes;
+	SInt64 mAbsoluteSampleFrame;
+
 	
 private:
 				
@@ -203,6 +203,7 @@ private:
 	UInt32 mNumActiveNotes;
 	UInt32 mMaxActiveNotes;
 	SynthNote* mNotes;	
+	SynthNoteList mFreeNotes;
 	UInt32 mNoteSize;
 	
 	AUScope			mPartScope;
