@@ -511,7 +511,7 @@ OSStatus			AUBase::DispatchGetPropertyInfo(AudioUnitPropertyID				inID,
 		outWritable = true;
 		break;
 #endif
-#if !CA_NO_AU_UI_FEATURES
+#if !CA_NO_AU_UI_FEATURES && !TARGET_OS_IPHONE
 	case kAudioUnitProperty_ContextName:
 		ca_require(inScope == kAudioUnitScope_Global, InvalidScope);
 		outDataSize = sizeof(CFStringRef);
@@ -744,7 +744,7 @@ OSStatus			AUBase::DispatchGetProperty(	AudioUnitPropertyID 			inID,
 		memcpy(outData, &mHostCallbackInfo, sizeof(mHostCallbackInfo));
 		break;
 #endif
-#if !CA_NO_AU_UI_FEATURES
+#if !CA_NO_AU_UI_FEATURES && !TARGET_OS_IPHONE
 	case kAudioUnitProperty_IconLocation:
 		{
 			CFURLRef iconLocation = CopyIconLocation();
@@ -973,7 +973,7 @@ OSStatus			AUBase::DispatchSetProperty(	AudioUnitPropertyID 			inID,
 		break;
 	}
 #endif
-#if !CA_NO_AU_UI_FEATURES
+#if !CA_NO_AU_UI_FEATURES && !TARGET_OS_IPHONE
 	case kAudioUnitProperty_SetExternalBuffer:
 		ca_require(inDataSize >= sizeof(AudioUnitExternalBuffer), InvalidPropertyValue);
 		ca_require(IsInitialized(), Uninitialized);
@@ -1082,7 +1082,7 @@ OSStatus			AUBase::DispatchRemovePropertyValue (AudioUnitPropertyID		inID,
 		break;
 	}
 #endif
-#if !CA_NO_AU_UI_FEATURES
+#if !CA_NO_AU_UI_FEATURES && !TARGET_OS_IPHONE
 	case kAudioUnitProperty_ContextName:
 		if (mContextName) CFRelease(mContextName);
 		mContextName = NULL;

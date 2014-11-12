@@ -191,7 +191,7 @@ protected:
 	virtual SynthGroupElement *	GetElForNoteID (NoteInstanceID inNoteID);
 
 	SInt64 mAbsoluteSampleFrame;
-
+    SynthNoteList mFreeNotes;
 	
 private:
 				
@@ -202,8 +202,7 @@ private:
 	UInt32 mNumNotes;
 	UInt32 mNumActiveNotes;
 	UInt32 mMaxActiveNotes;
-	SynthNote* mNotes;	
-	SynthNoteList mFreeNotes;
+	SynthNote* mNotes;
 	UInt32 mNoteSize;
 	
 	AUScope			mPartScope;
