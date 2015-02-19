@@ -60,9 +60,12 @@ static OSStatus		AUMIDIEffectBaseMIDIEvent(void *				inComponentStorage,
 						UInt32					inData2,
 						UInt32					inOffsetSampleFrame);
 
-AUMIDIEffectBase::AUMIDIEffectBase(		AudioComponentInstance				inInstance,
-						bool 						inProcessesInPlace ) 
-	: AUEffectBase(inInstance, inProcessesInPlace),
+AUMIDIEffectBase::AUMIDIEffectBase(AudioComponentInstance inInstance,
+                                   UInt32 numInputElements,
+                                   UInt32 numOutputElements,
+                                   UInt32 numGroupElements,
+                                   bool   inProcessesInPlace)
+	: AUEffectBase(inInstance, numInputElements, numOutputElements, numGroupElements, inProcessesInPlace),
 	  AUMIDIBase(this)
 {
 }

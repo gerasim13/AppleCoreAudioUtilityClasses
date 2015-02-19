@@ -57,8 +57,11 @@
 class AUMIDIEffectBase : public AUEffectBase, public AUMIDIBase {
 public:
 	/*! @ctor AUMIDIEffectBase */
-								AUMIDIEffectBase(	AudioComponentInstance	inInstance,
-													bool					inProcessesInPlace = false );
+								AUMIDIEffectBase(AudioComponentInstance	inInstance,
+                                                 UInt32 numInputElements   = 1, // 1 in bus
+                                                 UInt32 numOutputElements  = 1, // 1 out bus
+                                                 UInt32 numGroupElements   = 0,
+                                                 bool   inProcessesInPlace = false);
     /*! @method MIDIEvent */
     virtual OSStatus            MIDIEvent(UInt32            inStatus,
                                           UInt32            inData1,

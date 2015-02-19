@@ -58,9 +58,12 @@
 
 //_____________________________________________________________________________
 //
-AUEffectBase::AUEffectBase(	AudioComponentInstance	audioUnit,
-							bool					inProcessesInPlace ) :
-	AUBase(audioUnit, 1, 1),		// 1 in bus, 1 out bus
+AUEffectBase::AUEffectBase(AudioComponentInstance audioUnit,
+                           UInt32 numInputElements,
+                           UInt32 numOutputElements,
+                           UInt32 numGroupElements,
+                           bool   inProcessesInPlace) :
+	AUBase(audioUnit, numInputElements, numOutputElements, numGroupElements),
 	mBypassEffect(false),
 	mParamSRDep (false),
 	mProcessesInPlace(inProcessesInPlace),
@@ -69,6 +72,7 @@ AUEffectBase::AUEffectBase(	AudioComponentInstance	audioUnit,
 	, mOnlyOneKernel(false)
 #endif
 {
+    XAssert(numInputElements == numOutputElements);
 }
 
 //_____________________________________________________________________________

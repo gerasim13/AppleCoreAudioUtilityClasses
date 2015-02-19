@@ -59,8 +59,11 @@ class AUKernelBase;
 class AUEffectBase : public AUBase {
 public:
 	/*! @ctor AUEffectBase */
-								AUEffectBase(	AudioComponentInstance		audioUnit,
-												bool						inProcessesInPlace = true );
+								AUEffectBase(AudioComponentInstance audioUnit,
+                                             UInt32 numInputElements   = 1, // 1 in bus
+                                             UInt32 numOutputElements  = 1, // 1 out bus
+                                             UInt32 numGroupElements   = 0,
+                                             bool   inProcessesInPlace = true );
 	/*! @dtor ~AUEffectBase */
 								~AUEffectBase();
 	
