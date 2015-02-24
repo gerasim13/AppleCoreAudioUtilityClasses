@@ -61,7 +61,7 @@ public:
                                                  UInt32 numInputElements   = 1, // 1 in bus
                                                  UInt32 numOutputElements  = 1, // 1 out bus
                                                  UInt32 numGroupElements   = 0,
-                                                 bool   inProcessesInPlace = false);
+                                                 bool   inProcessesInPlace = true);
     /*! @method MIDIEvent */
     virtual OSStatus            MIDIEvent(UInt32            inStatus,
                                           UInt32            inData1,

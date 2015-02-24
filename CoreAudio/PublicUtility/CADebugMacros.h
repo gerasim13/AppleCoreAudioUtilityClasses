@@ -61,10 +61,10 @@
 //	CADebugMacros
 //=============================================================================
 
-//#define	CoreAudio_StopOnFailure			1
-//#define	CoreAudio_TimeStampMessages		1
-//#define	CoreAudio_ThreadStampMessages	1
-//#define	CoreAudio_FlushDebugMessages	1
+#define	CoreAudio_StopOnFailure			1
+#define	CoreAudio_TimeStampMessages		1
+#define	CoreAudio_ThreadStampMessages	1
+#define	CoreAudio_FlushDebugMessages	1
 
 #if TARGET_RT_BIG_ENDIAN
 	#define	CA4CCToCString(the4CC)					{ ((char*)&the4CC)[0], ((char*)&the4CC)[1], ((char*)&the4CC)[2], ((char*)&the4CC)[3], 0 }

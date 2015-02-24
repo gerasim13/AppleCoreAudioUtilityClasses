@@ -72,7 +72,6 @@ AUEffectBase::AUEffectBase(AudioComponentInstance audioUnit,
 	, mOnlyOneKernel(false)
 #endif
 {
-    XAssert(numInputElements == numOutputElements);
 }
 
 //_____________________________________________________________________________

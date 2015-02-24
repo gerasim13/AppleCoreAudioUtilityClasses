@@ -82,7 +82,7 @@ bool CAIsDebuggerAttached(void)
 
 void	CADebuggerStop(void)
 {
-	#if	CoreAudio_Debug
+	#if	DEBUG || CoreAudio_Debug
 		#if	TARGET_API_MAC_OSX
 			if(CAIsDebuggerAttached())
 			{

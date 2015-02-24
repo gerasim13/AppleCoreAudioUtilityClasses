@@ -162,7 +162,7 @@ public:
 protected:
 											
 	/*! @method MaintainKernels */
-	void						MaintainKernels();
+	virtual void                MaintainKernels();
 
 	/*! @method ShouldBypassEffect */
 	// This is used in the render call to see if an effect is bypassed
@@ -233,7 +233,7 @@ protected:
 	CAStreamBasicDescription::CommonPCMFormat GetCommonPCMFormat() const { return mCommonPCMFormat; }
 	
 
-private:
+protected:
 	/*! @var mBypassEffect */
 	bool							mBypassEffect;
 	/*! @var mParamSRDep */
