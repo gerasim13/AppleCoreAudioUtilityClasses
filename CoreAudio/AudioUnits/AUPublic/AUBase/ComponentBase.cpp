@@ -204,7 +204,7 @@ AudioComponentDescription ComponentBase::GetComponentDescription() const
 	if (IsPluginObject()) {
 		ca_require_noerr(result = CB_GetComponentDescription (mComponentInstance, &desc), home);
 	}
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 	else {
 		ca_require_noerr(result = CMgr_GetComponentDescription (mComponentInstance, &desc), home);	
 	}
@@ -262,7 +262,7 @@ static OSStatus CB_GetComponentDescription (const AudioComponentInstance inInsta
 		if (comp)
 			result = (*acGDProc)(comp, outDesc);
 	} 
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 	else {
 		result = CMgr_GetComponentDescription (inInstance, outDesc);
 	}
@@ -276,8 +276,12 @@ static OSStatus CB_GetComponentDescription (const AudioComponentInstance inInsta
 // that is a component mgr is dependent on
 
 // these are dynamically loaded
-
-#include <CoreServices/CoreServices.h>
+#if TARGET_OS_IPHONE
+    #include <MobileCoreServices/MobileCoreServices.h>
+    #include <AudioUnit/AudioUnit.h>
+#else
+    #include <CoreServices/CoreServices.h>
+#endif
 #include <AudioUnit/AudioUnit.h>
 #include "CAXException.h"
 #include "ComponentBase.h"

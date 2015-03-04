@@ -84,7 +84,7 @@ void	AUInputElement::SetConnection(const AudioUnitConnection &conn)
 
 	mConnInstanceStorage = NULL;
 
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 	mConnRenderProc = NULL;
 	UInt32 size = sizeof(AudioUnitRenderProc);
 	OSStatus result = AudioUnitGetProperty(	conn.sourceAudioUnit,

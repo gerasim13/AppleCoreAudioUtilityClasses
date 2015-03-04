@@ -136,7 +136,7 @@ OSStatus			MusicDeviceBase::GetProperty(	AudioUnitPropertyID			inID,
 
 	switch (inID) 
 	{
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 		case kAudioUnitProperty_FastDispatch:
 			if (!IsCMgrObject()) return kAudioUnitErr_InvalidProperty;
 			if (inElement == kMusicDeviceMIDIEventSelect) {
@@ -259,6 +259,7 @@ OSStatus			MusicDeviceBase::ComponentEntryDispatch(	ComponentParameters *		param
 			result = AUMIDIBase::ComponentEntryDispatch (params, This);
 		}
 		break;
+#if !TARGET_OS_IPHONE
 	case kMusicDevicePrepareInstrumentSelect:
 		{
 			PARAM(MusicDeviceInstrumentID, inInstrument, 0, 1);
@@ -271,6 +272,7 @@ OSStatus			MusicDeviceBase::ComponentEntryDispatch(	ComponentParameters *		param
 			result = This->ReleaseInstrument(inInstrument);
 		}
 		break;
+#endif
 	case kMusicDeviceStartNoteSelect:
 		{
 			PARAM(MusicDeviceInstrumentID, pbinInstrument, 0, 5);

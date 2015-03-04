@@ -354,7 +354,7 @@ OSStatus			AUBase::DispatchGetPropertyInfo(AudioUnitPropertyID				inID,
 		break;
 		
 	case kAudioUnitProperty_PresentPreset:
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 #ifndef __LP64__
 	case kAudioUnitProperty_CurrentPreset:
 #endif
@@ -475,7 +475,7 @@ OSStatus			AUBase::DispatchGetPropertyInfo(AudioUnitPropertyID				inID,
 		break;
 #endif
 
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 	case kAudioUnitProperty_FastDispatch:
 		ca_require(inScope == kAudioUnitScope_Global, InvalidScope);
 		if (!IsCMgrObject()) goto InvalidProperty;
@@ -617,7 +617,7 @@ OSStatus			AUBase::DispatchGetProperty(	AudioUnitPropertyID 			inID,
 		break;
 	
 	case kAudioUnitProperty_PresentPreset:
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 #ifndef __LP64__
 	case kAudioUnitProperty_CurrentPreset:
 #endif
@@ -711,7 +711,7 @@ OSStatus			AUBase::DispatchGetProperty(	AudioUnitPropertyID 			inID,
 		result = GetParameterValueStrings(inScope, inElement, (CFArrayRef *)outData);
 		break;
 		
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 	case kAudioUnitProperty_FastDispatch:
 		if (!IsCMgrObject()) result = kAudioUnitErr_InvalidProperty;
 		else {
@@ -907,7 +907,7 @@ OSStatus			AUBase::DispatchSetProperty(	AudioUnitPropertyID 			inID,
 		break;
 
 	case kAudioUnitProperty_PresentPreset:
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 #ifndef __LP64__
 	case kAudioUnitProperty_CurrentPreset:
 #endif
@@ -1032,7 +1032,7 @@ InvalidFormat:
 Uninitialized:
 	return kAudioUnitErr_Uninitialized;
 #endif
-#if (MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5) || CA_USE_AUDIO_PLUGIN_ONLY
+#if (MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5) || CA_USE_AUDIO_PLUGIN_ONLY || TARGET_OS_IPHONE
 Initialized:
 	return kAudioUnitErr_Initialized;
 #endif
@@ -2123,7 +2123,7 @@ OSStatus			AUBase::RestoreState(	CFPropertyListRef	plist)
 	}
 	
 	CFRetain (mCurrentPreset.presetName);
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 #ifndef __LP64__
 	PropertyChanged(kAudioUnitProperty_CurrentPreset, kAudioUnitScope_Global, 0);
 #endif

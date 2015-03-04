@@ -56,7 +56,11 @@
 	#include <AudioUnit/AudioUnit.h>
 
 	#if !CA_USE_AUDIO_PLUGIN_ONLY
-		#include <CoreServices/../Frameworks/CarbonCore.framework/Headers/Components.h>
+        #if !TARGET_OS_IPHONE
+            #include <CoreServices/../Frameworks/CarbonCore.framework/Headers/Components.h>
+        #else
+            #include "CarbonComponent.h"
+        #endif
 	
 		#if	(MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_5)
 			#define AudioComponentInstance			ComponentInstance
@@ -261,7 +265,7 @@ public:
 	}
 };
 
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 /*! @class ComponentEntryPoint 
  *	@discussion This is only used for a component manager version
 */

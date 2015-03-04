@@ -93,7 +93,7 @@ OSStatus			AUMIDIEffectBase::GetProperty(	AudioUnitPropertyID		inID,
 {
 	OSStatus result;
 
-#if !CA_USE_AUDIO_PLUGIN_ONLY
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 	if (inID == kAudioUnitProperty_FastDispatch) {
 		if (inElement == kMusicDeviceMIDIEventSelect) {
 			*(TEMP_MusicDeviceMIDIEventProc *)outData = AUMIDIEffectBaseMIDIEvent;

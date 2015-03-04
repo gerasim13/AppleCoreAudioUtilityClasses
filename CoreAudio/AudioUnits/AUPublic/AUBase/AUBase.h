@@ -489,14 +489,6 @@ public:
 														const CAStreamBasicDescription & inNewFormat);
 															// Will only be called after StreamFormatWritable
 															// and ValidFormat have succeeded.
-															
-	// ________________________________________________________________________
-
-#if !CA_USE_AUDIO_PLUGIN_ONLY
-	/*! @method ComponentEntryDispatch */
-	static OSStatus			ComponentEntryDispatch(	ComponentParameters *			params,
-														AUBase *						This);
-#endif
 
 	// ________________________________________________________________________
 	// Methods useful for subclasses
