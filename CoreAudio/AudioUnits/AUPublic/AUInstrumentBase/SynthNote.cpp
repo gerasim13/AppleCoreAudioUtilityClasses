@@ -59,31 +59,27 @@ bool SynthNote::AttackNote(
 #if DEBUG_PRINT
 	printf("SynthNote::AttackNote %lu %lu abs frame %llu rel frame %lu\n", (UInt32)inGroup->GroupID(), (UInt32)inNoteID, inAbsoluteSampleFrame, inOffsetSampleFrame);
 #endif
-	mPart = inPart;
-	mGroup = inGroup;
+	mPart   = inPart;
+	mGroup  = inGroup;
 	mNoteID = inNoteID;
-
-	mAbsoluteStartFrame = inAbsoluteSampleFrame;
-	mRelativeStartFrame = inOffsetSampleFrame;
+	mAbsoluteStartFrame   = inAbsoluteSampleFrame;
+	mRelativeStartFrame   = inOffsetSampleFrame;
 	mRelativeReleaseFrame = -1;
-	mRelativeKillFrame = -1;
-
-	mPitch = inParams.mPitch;
+	mRelativeKillFrame    = -1;
+	mPitch    = inParams.mPitch;
 	mVelocity = inParams.mVelocity;
-	
-	
 	return Attack(inParams);
 }
 
 
 void SynthNote::Reset()
 {
-	mPart = 0;
-	mGroup = 0;
-	mAbsoluteStartFrame = 0;
-	mRelativeStartFrame = 0;
+	mPart                 = 0;
+	mGroup                = 0;
+	mAbsoluteStartFrame   = 0;
+	mRelativeStartFrame   = 0;
 	mRelativeReleaseFrame = 0;
-	mRelativeKillFrame = 0;
+	mRelativeKillFrame    = 0;
 }
 
 void SynthNote::Kill(UInt32 inFrame)

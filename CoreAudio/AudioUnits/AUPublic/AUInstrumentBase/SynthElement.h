@@ -165,7 +165,7 @@ public:
 	
 	SynthNote *				GetNote(NoteInstanceID inNoteID, bool unreleasedOnly=false, UInt32 *outNoteState=NULL);
 	
-	void					Reset();
+	virtual void            Reset();
 	
 	virtual OSStatus		Render(SInt64 inAbsoluteSampleFrame, UInt32 inNumberFrames, AUScope &outputs);
 	

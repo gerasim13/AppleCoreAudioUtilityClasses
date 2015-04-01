@@ -47,7 +47,11 @@
 #ifndef __CAAUParameter_h__
 #define __CAAUParameter_h__
 
-#include <AudioToolbox/AudioUnitUtilities.h>
+#if !TARGET_OS_IPHONE
+    #include <AudioToolbox/AudioUnitUtilities.h>
+#else
+    #include <AudioUnit/AudioUnit.h>
+#endif
 
 // ____________________________________________________________________________
 //	CAAUParameter

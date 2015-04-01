@@ -77,6 +77,9 @@ public:
 	/*! @method HasConnection */
 	bool				HasConnection() const { return mInputType == kFromConnection; }
 
+    /*! @method GetConnection */
+    AudioUnitConnection GetConnection() const { return mConnection; }
+
 	/*! @method PullInput */
 	OSStatus			PullInput(	AudioUnitRenderActionFlags &  	ioActionFlags,
 									const AudioTimeStamp &			inTimeStamp,
