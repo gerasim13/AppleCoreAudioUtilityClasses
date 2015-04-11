@@ -383,7 +383,7 @@ void			AUIOElement::DeallocateBuffer()
 // outLayoutTagsPtr WILL be NULL if called to find out how many
 // layouts that Audio Unit will report 
 // return 0 (ie. NO channel layouts) if the AU doesn't require channel layout knowledge
-UInt32		AUIOElement::GetChannelLayoutTags (AudioChannelLayoutTag		*outLayoutTagsPtr)
+UInt32		AUIOElement::GetChannelLayoutTags (__unused AudioChannelLayoutTag *outLayoutTagsPtr)
 {
 	return 0;
 }
@@ -395,8 +395,8 @@ UInt32		AUIOElement::GetChannelLayoutTags (AudioChannelLayoutTag		*outLayoutTags
 // the AU should also return whether the property is writable (that is the client can provide any arbitrary ACL that the audio unit will then honour)
 // or if the property is read only - which is the generally preferred mode.
 // If the AU doesn't require an AudioChannelLayout, then just return 0.
-UInt32		AUIOElement::GetAudioChannelLayout (AudioChannelLayout		*outMapPtr, 
-											Boolean				&outWritable)
+UInt32		AUIOElement::GetAudioChannelLayout (__unused AudioChannelLayout *outMapPtr,
+                                                __unused Boolean            &outWritable)
 {
 	return 0;
 }
@@ -404,7 +404,7 @@ UInt32		AUIOElement::GetAudioChannelLayout (AudioChannelLayout		*outMapPtr,
 // the incoming channel map will be at least as big as a basic AudioChannelLayout
 // but its contents will determine its actual size
 // Subclass should overide if channel map is writable
-OSStatus	AUIOElement::SetAudioChannelLayout (const AudioChannelLayout &inData)
+OSStatus	AUIOElement::SetAudioChannelLayout (__unused const AudioChannelLayout &inData)
 {
 	return kAudioUnitErr_InvalidProperty;
 }

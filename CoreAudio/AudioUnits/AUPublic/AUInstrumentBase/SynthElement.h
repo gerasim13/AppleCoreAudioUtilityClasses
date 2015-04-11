@@ -94,7 +94,7 @@ public:
 		}
 		return false;
 	}
-	virtual bool	SetSysex(void *inSysexMsg) { return false; }
+	virtual bool  SetSysex(__unused void *inSysexMsg) { return false; }
 
 	virtual float GetPitchBend() const { return mFPitchBend * mFPitchBendDepth; }
 
