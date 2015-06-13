@@ -54,11 +54,13 @@ typedef OSStatus
 				UInt32					inData2,
 				UInt32					inOffsetSampleFrame);
 
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 static OSStatus		AUMIDIEffectBaseMIDIEvent(void *				inComponentStorage,
 						UInt32					inStatus,
 						UInt32					inData1,
 						UInt32					inData2,
 						UInt32					inOffsetSampleFrame);
+#endif
 
 AUMIDIEffectBase::AUMIDIEffectBase(AudioComponentInstance inInstance,
                                    UInt32 numInputElements,
@@ -149,6 +151,7 @@ OSStatus			AUMIDIEffectBase::ComponentEntryDispatch(ComponentParameters *			para
 }
 #endif
 
+#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
 // fast dispatch
 static OSStatus		AUMIDIEffectBaseMIDIEvent(void *				inComponentStorage,
 						UInt32					inStatus,
@@ -165,3 +168,4 @@ static OSStatus		AUMIDIEffectBaseMIDIEvent(void *				inComponentStorage,
 	COMPONENT_CATCH
 	return result;
 }
+#endif
