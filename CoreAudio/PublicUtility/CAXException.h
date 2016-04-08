@@ -154,7 +154,7 @@ private:
 			OSStatus __err = error;												\
 			if (__err) {														\
 				DebugMessageN4("%s:%d: about to throw %s: %s", __FILE__, __LINE__, CAX4CCString(__err).get(), operation);\
-				__THROW_STOP;															\
+				__THROW_STOP;													\
 				throw CAXException(operation, __err);							\
 			}																	\
 		} while (0)
@@ -164,7 +164,7 @@ private:
 			if (condition) {													\
 				OSStatus __err = error;											\
 				DebugMessageN4("%s:%d: about to throw %s: %s", __FILE__, __LINE__, CAX4CCString(__err).get(), operation);\
-				__THROW_STOP;															\
+				__THROW_STOP;													\
 				throw CAXException(operation, __err);							\
 			}																	\
 		} while (0)
@@ -183,7 +183,7 @@ private:
 		do {																	\
 			if (!(assertion)) {													\
 				DebugMessageN3("%s:%d: error: failed assertion: %s", __FILE__, __LINE__, #assertion);		\
-				__ASSERT_STOP;															\
+				__ASSERT_STOP;													\
 			}																	\
 		} while (0)
 	
@@ -265,7 +265,7 @@ private:
       {																			\
           if ( __builtin_expect(!(assertion), 0) )								\
           {																		\
-              DebugMessageN3("ca_check: %s %s:%d",							\
+              DebugMessageN3("ca_check: %s %s:%d",                              \
                   #assertion,													\
                   __FILE__,														\
                   __LINE__);													\
@@ -273,40 +273,46 @@ private:
       } while ( 0 )
 		
 #else
-	#define XThrowIfError(error, operation)										\
-		do {																	\
-			OSStatus __err = error;												\
-			if (__err) {														\
-				throw CAXException(operation, __err);							\
-			}																	\
-		} while (0)
 
-	#define XThrowIf(condition, error, operation)								\
-		do {																	\
-			if (condition) {													\
-				OSStatus __err = error;											\
-				throw CAXException(operation, __err);							\
-			}																	\
-		} while (0)
+    #ifndef NS_BLOCK_ASSERTIONS
+        #define XAssert(assertion)												\
+            do {																\
+                if (!(assertion)) {												\
+                }																\
+            } while (0)
 
-	#define XRequireNoError(error, label)										\
-		do {																	\
-			OSStatus __err = error;												\
-			if (__err) {														\
-				goto label;														\
-			}																	\
-		} while (0)
+        #define XAssertNoError(error)											\
+            do {																\
+                /*OSStatus __err =*/ error;										\
+            } while (0)
+    #else
+        #define XAssert(assertion)
+        #define XAssertNoError(error)
+    #endif
 
-	#define XAssert(assertion)													\
-		do {																	\
-			if (!(assertion)) {													\
-			}																	\
-		} while (0)
+    #define XThrowIfError(error, operation)                                     \
+        do {                                                                    \
+            OSStatus __err = error;                                             \
+            if (__err) {                                                        \
+                throw CAXException(operation, __err);                           \
+            }                                                                   \
+        } while (0)
 
-	#define XAssertNoError(error)												\
-		do {																	\
-			/*OSStatus __err =*/ error;											\
-		} while (0)
+    #define XThrowIf(condition, error, operation)                               \
+        do {                                                                    \
+            if (condition) {                                                    \
+                OSStatus __err = error;                                         \
+                throw CAXException(operation, __err);                           \
+            }                                                                   \
+        } while (0)
+
+    #define XRequireNoError(error, label)                                       \
+        do {                                                                    \
+            OSStatus __err = error;                                             \
+            if (__err) {                                                        \
+                goto label;                                                     \
+            }                                                                   \
+        } while (0)
 
 	#define ca_require_noerr(errorCode, exceptionLabel)							\
 		do																		\
@@ -351,8 +357,6 @@ private:
 			{																	\
 			}																	\
 		} while ( 0 )
-
-
 #endif
 
 #define XThrow(error, operation) XThrowIf(true, error, operation)

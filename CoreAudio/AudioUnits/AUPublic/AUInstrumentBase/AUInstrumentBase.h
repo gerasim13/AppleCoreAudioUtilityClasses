@@ -192,13 +192,11 @@ protected:
 
 	SInt64 mAbsoluteSampleFrame;
     SynthNoteList mFreeNotes;
+    SynthEventQueue mEventQueue;
 	
 private:
 				
 	SInt32 mNoteIDCounter;
-	
-	SynthEventQueue mEventQueue;
-	
 	UInt32 mNumNotes;
 	UInt32 mNumActiveNotes;
 	UInt32 mMaxActiveNotes;
