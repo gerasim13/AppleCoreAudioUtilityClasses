@@ -285,7 +285,10 @@ public:
 	// _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 	//
 	//	manipulation
-	
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 	void	SetCanonical(UInt32 nChannels, bool interleaved)
 				// note: leaves sample rate untouched
 	{
@@ -356,6 +359,8 @@ public:
 			mFormatFlags |= kAudioFormatFlagIsNonInterleaved;
 		}
 	}
+
+#pragma clang diagnostic pop
 	
 	// _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 	//

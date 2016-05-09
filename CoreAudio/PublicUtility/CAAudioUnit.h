@@ -47,6 +47,9 @@
 #ifndef __CAAudioUnit_h__
 #define __CAAudioUnit_h__
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 #if !defined(__COREAUDIO_USE_FLAT_INCLUDES__)
 	#include <CoreAudio/CoreAudioTypes.h>
 	#include <AudioUnit/AudioUnit.h>
@@ -65,6 +68,8 @@
 #include "CAStreamBasicDescription.h"
 #include "CAComponent.h"
 #include "CAAudioChannelLayout.h"
+
+#pragma clang diagnostic pop
 
 // defined below
 class CAAUChanHelper;

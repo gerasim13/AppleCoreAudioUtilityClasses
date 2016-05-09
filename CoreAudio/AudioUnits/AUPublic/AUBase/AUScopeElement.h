@@ -337,12 +337,16 @@ public:
 	AudioBufferList &			GetBufferList() const { return mIOBuffer.GetBufferList(); }
 
 /*! @method GetChannelData */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AudioUnitSampleType *		GetChannelData(int ch) const {
 									if (mStreamFormat.IsInterleaved())
 										return static_cast<AudioUnitSampleType *>(mIOBuffer.GetBufferList().mBuffers[0].mData) + ch;
 									else
 										return static_cast<AudioUnitSampleType *>(mIOBuffer.GetBufferList().mBuffers[ch].mData);
 								}
+#pragma clang diagnostic pop
+    
 	Float32 *					GetFloat32ChannelData(int ch) const {
 									if (mStreamFormat.IsInterleaved())
 										return static_cast<Float32 *>(mIOBuffer.GetBufferList().mBuffers[0].mData) + ch;

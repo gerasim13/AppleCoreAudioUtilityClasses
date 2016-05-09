@@ -618,7 +618,6 @@ public:
 														AudioUnitScope					inScope, 
 														AudioUnitElement				inElement);
 
-#if !CA_NO_AU_UI_FEATURES
 	// These calls can be used to call a Host's Callbacks. The method returns -1 if the host
 	// hasn't supplied the callback. Any other result is returned by the host.
 	// As in the API contract, for a parameter's value, you specify a pointer
@@ -669,7 +668,6 @@ public:
 																		outCycleEndBeat)
 						: -1);
 	}
-#endif
 
 	char*						GetLoggingString () const;
 	
