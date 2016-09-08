@@ -50,8 +50,8 @@
 #include "SynthNote.h"
 
 #if DEBUG
-#ifndef DEBUG_PRINT
-	#define DEBUG_PRINT 0
+#ifndef USE_DEBUG_PRINT
+	#define USE_DEBUG_PRINT 0
 #endif
 	#define USE_SANITY_CHECK 1
 #endif
@@ -83,7 +83,7 @@ struct SynthNoteList
 	
 	void AddNote(SynthNote *inNote)
 	{
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 		printf("AddNote(inNote=%p) to state: %lu\n", inNote, mState);
 #endif
 #if USE_SANITY_CHECK
@@ -102,7 +102,7 @@ struct SynthNoteList
 	
 	void RemoveNote(SynthNote *inNote)
 	{
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 		printf("RemoveNote(inNote=%p) from state: %lu\n", inNote, mState);
 #endif
 #if USE_SANITY_CHECK
@@ -123,7 +123,7 @@ struct SynthNoteList
 
 	void TransferAllFrom(SynthNoteList *inNoteList, UInt32 inFrame)
 	{
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 		printf("TransferAllFrom: from state %lu into state %lu\n", inNoteList->mState, mState);
 #endif
 #if USE_SANITY_CHECK
@@ -136,7 +136,7 @@ struct SynthNoteList
 		{
 			for (SynthNote* note = inNoteList->mHead; note; note = note->mNext)
 			{
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 				printf("TransferAllFrom: releasing note %p\n", note);
 #endif
 				note->Release(inFrame);
@@ -168,7 +168,7 @@ struct SynthNoteList
 	
 	SynthNote* FindOldestNote()
 	{
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 		printf("FindOldestNote\n");
 #endif
 #if USE_SANITY_CHECK
@@ -189,7 +189,7 @@ struct SynthNoteList
 	
 	SynthNote* FindMostQuietNote()
 	{
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 		printf("FindMostQuietNote\n");
 #endif
 		Float32 minAmplitude = 1e9f;
@@ -198,7 +198,7 @@ struct SynthNoteList
 		for (SynthNote* note = mHead; note; note = note->mNext)
 		{
 			Float32 amp = note->Amplitude();
-#if DEBUG_PRINT
+#if USE_DEBUG_PRINT
 			printf("   amp %g   minAmplitude %g\n", amp, minAmplitude);
 #endif
 			if (amp < minAmplitude)

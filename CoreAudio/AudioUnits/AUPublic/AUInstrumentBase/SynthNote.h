@@ -169,7 +169,7 @@ protected:
 	void					SetState(SynthNoteState inState) { mState = inState; }
 private:
 	SynthPartElement*		mPart;
-	SynthGroupElement*	mGroup;
+	SynthGroupElement*	    mGroup;
 		
 	NoteInstanceID			mNoteID;
 	SynthNoteState			mState;

@@ -177,12 +177,12 @@ inline UInt64	CAHostTimeBase::ConvertFromNanos(UInt64 inNanos)
 	return theAnswer;
 }
 
-inline UInt64	CAHostTimeBase::GetCurrentTimeInNanos()
+inline UInt64 CAHostTimeBase::GetCurrentTimeInNanos()
 {
 	return ConvertToNanos(GetTheCurrentTime());
 }
 
-inline UInt64	CAHostTimeBase::AbsoluteHostDeltaToNanos(UInt64 inStartTime, UInt64 inEndTime)
+inline UInt64 CAHostTimeBase::AbsoluteHostDeltaToNanos(UInt64 inStartTime, UInt64 inEndTime)
 {
 	UInt64 theAnswer;
 	

@@ -69,18 +69,18 @@ public:
 	
 	enum
 	{
-		kDefault_Midpoint				= 0x40,		//! Used for all center-null-point controllers
+		kDefault_Midpoint			= 0x40,		//! Used for all center-null-point controllers
 		kDefault_Volume				= 100,
-		kDefault_Pan					= kDefault_Midpoint,
-		kDefault_ModWheel				= 0,
-		kDefault_Pitch					= kDefault_Midpoint,
+		kDefault_Pan				= kDefault_Midpoint,
+		kDefault_ModWheel			= 0,
+		kDefault_Pitch				= kDefault_Midpoint,
 		kDefault_Expression			= 0x7f,
 		kDefault_ChannelPressure	= 0,
 		kDefault_ReverbSend			= 40,
 		kDefault_ChorusSend			= 0,
 		
-		kDefault_RPN_LSB				= 0x7f,
-		kDefault_RPN_MSB				= 0x7f,
+		kDefault_RPN_LSB			= 0x7f,
+		kDefault_RPN_MSB			= 0x7f,
 		kDefault_PitchBendRange		= 2,
 		kDefault_FineTuning			= kDefault_Midpoint,
 		kDefault_CoarseTuning		= kDefault_Midpoint,

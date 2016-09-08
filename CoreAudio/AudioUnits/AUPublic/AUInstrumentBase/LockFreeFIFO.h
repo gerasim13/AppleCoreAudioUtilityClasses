@@ -42,8 +42,12 @@
  POSSIBILITY OF SUCH DAMAGE.
  
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
- 
+
 */
+
+#ifndef LockFreeFIFO_h
+#define LockFreeFIFO_h
+
 #include <libkern/OSAtomic.h>
 
 template <class ITEM>
@@ -165,4 +169,6 @@ private:
 	int32_t mMask;
 	ITEM *mItems;
 };
+
+#endif /* LockFreeFIFO_h */
 

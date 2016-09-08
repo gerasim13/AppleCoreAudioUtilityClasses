@@ -118,7 +118,6 @@ bool		AUElement::HasParameterID (AudioUnitParameterID paramID) const
 AudioUnitParameterValue		AUElement::GetParameter(AudioUnitParameterID paramID)
 {
 	ParameterMapEvent &event = GetParamEvent(paramID);
-	
 	return event.GetValue();
 }
 
