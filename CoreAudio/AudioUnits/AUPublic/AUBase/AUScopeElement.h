@@ -106,9 +106,9 @@ public:
     mDurationInFrames(mapEvent.mDurationInFrames),
     mSliceDurationFrames(mapEvent.mSliceDurationFrames)
     {
-        std::atomic_store_explicit(&mEventType, mapEvent.mEventType.load(), std::memory_order_relaxed);
-        std::atomic_store_explicit(&mValue1, mapEvent.mValue1.load(), std::memory_order_relaxed);
-        std::atomic_store_explicit(&mValue2, mapEvent.mValue2.load(), std::memory_order_relaxed);
+        std::atomic_store_explicit(&mEventType, mapEvent.mEventType.load(std::memory_order_acquire), std::memory_order_relaxed);
+        std::atomic_store_explicit(&mValue1, mapEvent.mValue1.load(std::memory_order_acquire), std::memory_order_relaxed);
+        std::atomic_store_explicit(&mValue2, mapEvent.mValue2.load(std::memory_order_acquire), std::memory_order_relaxed);
     }
 
     ParameterMapEvent& operator=(const ParameterMapEvent &mapEvent)
@@ -116,9 +116,9 @@ public:
         mBufferOffset = mapEvent.mBufferOffset;
         mDurationInFrames = mapEvent.mDurationInFrames;
         mSliceDurationFrames = mapEvent.mSliceDurationFrames;
-        std::atomic_store_explicit(&mEventType, mapEvent.mEventType.load(), std::memory_order_relaxed);
-        std::atomic_store_explicit(&mValue1, mapEvent.mValue1.load(), std::memory_order_relaxed);
-        std::atomic_store_explicit(&mValue2, mapEvent.mValue2.load(), std::memory_order_relaxed);
+        std::atomic_store_explicit(&mEventType, mapEvent.mEventType.load(std::memory_order_acquire), std::memory_order_relaxed);
+        std::atomic_store_explicit(&mValue1, mapEvent.mValue1.load(std::memory_order_acquire), std::memory_order_relaxed);
+        std::atomic_store_explicit(&mValue2, mapEvent.mValue2.load(std::memory_order_acquire), std::memory_order_relaxed);
         return *this;
     }
 
@@ -224,8 +224,8 @@ public:
 		printf("	mBufferOffset = %d\n", (int)mBufferOffset);
 		printf("	mDurationInFrames = %d\n", (int)mDurationInFrames);
 		printf("	mSliceDurationFrames = %d\n", (int)mSliceDurationFrames);
-		printf("	mValue1 = %.5f\n", mValue1.load());
-		printf("	mValue2 = %.5f\n", mValue2.load());
+		printf("	mValue1 = %.5f\n", mValue1.load(std::memory_order_acquire));
+		printf("	mValue2 = %.5f\n", mValue2.load(std::memory_order_acquire));
 	}
 #endif
 
