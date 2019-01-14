@@ -1407,7 +1407,7 @@ void				AUBase::SetWantsRenderThreadID (bool inFlag)
 	
 	mWantsRenderThreadID = inFlag;
 	if (!mWantsRenderThreadID)
-		mRenderThreadID = NULL;
+		mRenderThreadID.store(NULL, std::memory_order_release);
 }
 
 //_____________________________________________________________________________
@@ -1473,7 +1473,7 @@ OSStatus			AUBase::DoRender(		AudioUnitRenderActionFlags &	ioActionFlags,
 		{
 			#if TARGET_OS_MAC
                 pthread_t threadid = pthread_self();
-                OSAtomicCompareAndSwapPtr(mRenderThreadID, threadid, (void *volatile *)&mRenderThreadID);
+                mRenderThreadID.store(threadid, std::memory_order_release);
 			#elif TARGET_OS_WIN32
 				mRenderThreadID = GetCurrentThreadId();
 			#endif

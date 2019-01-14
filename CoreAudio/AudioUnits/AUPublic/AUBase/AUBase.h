@@ -937,7 +937,7 @@ private:
 	
 	/*! @var mRenderThreadID */
 #if TARGET_OS_MAC
-	pthread_t					mRenderThreadID;
+    std::atomic<pthread_t>      mRenderThreadID;
 #elif TARGET_OS_WIN32
 	UInt32						mRenderThreadID;
 #endif

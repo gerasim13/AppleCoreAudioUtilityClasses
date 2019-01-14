@@ -1219,10 +1219,10 @@ AudioUnitProcess (					AudioUnit						inUnit,
 									UInt32							inNumberFrames, 
 									AudioBufferList *				ioData);
 
-OSStatus		CAAudioUnit::Process (AudioUnitRenderActionFlags 			& ioActionFlags,
-												const AudioTimeStamp 		& inTimeStamp,
-												UInt32						inNumberFrames,
-												AudioBufferList				& ioData)
+OSStatus		CAAudioUnit::Process (AudioUnitRenderActionFlags & ioActionFlags,
+                                      const AudioTimeStamp 		 & inTimeStamp,
+                                      UInt32					   inNumberFrames,
+                                      AudioBufferList			 & ioData)
 {
 #if defined(__MAC_10_7) || defined(__IPHONE_4_0)
 	return AudioUnitProcess (AU(), &ioActionFlags, &inTimeStamp, inNumberFrames, &ioData);
