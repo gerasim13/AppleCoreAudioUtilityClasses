@@ -56,9 +56,10 @@
 	#include <AudioUnit/AudioUnit.h>
 
 	#if !CA_USE_AUDIO_PLUGIN_ONLY
-        #if !TARGET_OS_IPHONE
-            #include <CoreServices/../Frameworks/CarbonCore.framework/Headers/Components.h>
+        #if TARGET_OS_IPHONE || TARGET_OS_MACCATALYST
+            #include <MobileCoreServices/MobileCoreServices.h>
         #else
+            #include <CoreServices/CoreServices.h>
             #include "CarbonComponent.h"
         #endif
 	
@@ -171,7 +172,7 @@ protected:
 
 class ComponentInitLocker 
 {
-#if TARGET_OS_MAC
+#if TARGET_OS_MAC || TARGET_OS_MACCATALYST
 public:
 	ComponentInitLocker() 
 	{ 
@@ -265,7 +266,7 @@ public:
 	}
 };
 
-#if !CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE
+#if (!CA_USE_AUDIO_PLUGIN_ONLY && !TARGET_OS_IPHONE)
 /*! @class ComponentEntryPoint 
  *	@discussion This is only used for a component manager version
 */
@@ -340,9 +341,9 @@ public:
 
 #define	COMPONENT_REGISTER(Class,Type,Subtype,Manufacturer) \
 	static ComponentRegistrar<Class, Type, Subtype, Manufacturer>	gRegistrar##Class
+
 #else
-#define COMPONENT_ENTRY(Class)
-#define COMPONENT_REGISTER(Class)
+
 // this macro is used to generate the Entry Point for a given Audio Plugin
 // you should be using this macro now with audio components
 #define AUDIOCOMPONENT_ENTRY(FactoryType, Class) \
@@ -350,6 +351,15 @@ public:
     extern "C" void * Class##Factory(const AudioComponentDescription *inDesc) { \
         return FactoryType<Class>::Factory(inDesc); \
     }
+
+#define AudioComponentDescriptionMake(type, subType, manufacturer, flags, flagsMask) \
+{type, subType, manufacturer, flags, flagsMask}
+
+#define AUDIOCOMPONENT_REGISTER(Class, Name, Version, Type, SubType, Manufacturer, Flags, FlagsMask) \
+__attribute__((constructor)) static void Class##Registrar(void) { \
+    static const AudioComponentDescription cd = AudioComponentDescriptionMake(Type, SubType, Manufacturer, Flags, FlagsMask); \
+    static const AudioComponent component = AudioComponentRegister(&cd, Name, Version, (AudioComponentFactoryFunction)Class##Factory); \
+}
 
 #endif // !CA_USE_AUDIO_PLUGIN_ONLY
 

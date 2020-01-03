@@ -47,7 +47,7 @@
 #include "ComponentBase.h"
 #include "CAXException.h"
 
-#if TARGET_OS_MAC
+#if TARGET_OS_MAC || TARGET_OS_MACCATALYST
 pthread_mutex_t ComponentInitLocker::sComponentOpenMutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_once_t ComponentInitLocker::sOnce = PTHREAD_ONCE_INIT;
 
@@ -310,7 +310,7 @@ static void CSInitOnce(void* /*unused*/)
 	sSetComponentInstanceStorageProc = (SetComponentInstanceStorageProc) dlsym(theImage, "SetComponentInstanceStorage");
 }
 
-#if TARGET_OS_MAC
+#if TARGET_OS_MAC || TARGET_OS_MACCATALYST
 
 #include <dispatch/dispatch.h>
 

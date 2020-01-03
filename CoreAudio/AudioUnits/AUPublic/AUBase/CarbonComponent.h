@@ -10,16 +10,20 @@
 #ifndef __COMPONENTS__
 #define __COMPONENTS__
 
+#include <Availability.h>
+#include <MobileCoreServices/MobileCoreServices.h>
+
 #ifndef __MACERRORS__
+#if !TARGET_OS_IPHONE || TARGET_OS_MACCATALYST
+#include <CoreServices/CarbonCore/MacErrors.h>
+#else
 #include <MacErrors.h>
+#endif
 #endif
 
 #ifndef __MACTYPES__
 #include <MacTypes.h>
 #endif
-
-#include <Availability.h>
-#include <MobileCoreServices/MobileCoreServices.h>
 
 #if PRAGMA_ONCE
 #pragma once
