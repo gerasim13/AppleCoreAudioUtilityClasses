@@ -298,19 +298,22 @@ public:
 											bool &								ioSilence) { throw CAException(kAudio_UnimplementedError ); }
 
 	/*! @method GetSampleRate */
-	Float64						GetSampleRate()
+	Float64						GetSampleRate() const
 								{
 									return mAudioUnit->GetSampleRate();
 								}
 								
 	/*! @method GetParameter */
-	AudioUnitParameterValue		GetParameter (AudioUnitParameterID	paramID) 
+	AudioUnitParameterValue		GetParameter (AudioUnitParameterID	paramID) const
 								{
 									return mAudioUnit->GetParameter(paramID);
 								}
 	
 	void						SetChannelNum (UInt32 inChan) { mChannelNum = inChan; }
-	UInt32						GetChannelNum () { return mChannelNum; }
+	UInt32						GetChannelNum () const
+                                {
+                                    return mChannelNum;
+                                }
 	
 protected:
 	/*! @var mAudioUnit */
