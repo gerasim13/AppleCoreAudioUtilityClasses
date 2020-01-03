@@ -599,6 +599,8 @@ public:
 	/*! @method IsRenderThread */
 	bool						InRenderThread () const 
 								{
+                                    XAssert(( mWantsRenderThreadID &&  mRenderThreadID) ||
+                                            (!mWantsRenderThreadID && !mRenderThreadID));
 #if TARGET_OS_MAC
 									return (mRenderThreadID ? pthread_equal (mRenderThreadID, pthread_self()) : false);
 #elif TARGET_OS_WIN32

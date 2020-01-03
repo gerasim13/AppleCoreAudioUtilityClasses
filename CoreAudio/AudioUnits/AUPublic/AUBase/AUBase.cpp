@@ -1592,7 +1592,8 @@ OSStatus	AUBase::DoProcess (	AudioUnitRenderActionFlags  &		ioActionFlags,
 		if (WantsRenderThreadID())
 		{
 			#if TARGET_OS_MAC
-				mRenderThreadID = pthread_self();
+                pthread_t threadid = pthread_self();
+                mRenderThreadID.store(threadid, std::memory_order_release);
 			#elif TARGET_OS_WIN32
 				mRenderThreadID = GetCurrentThreadId();
 			#endif
@@ -1713,7 +1714,8 @@ OSStatus	AUBase::DoProcessMultiple (	AudioUnitRenderActionFlags  & ioActionFlags
 		if (WantsRenderThreadID())
 		{
 #if TARGET_OS_MAC
-			mRenderThreadID = pthread_self();
+            pthread_t threadid = pthread_self();
+            mRenderThreadID.store(threadid, std::memory_order_release);
 #elif TARGET_OS_WIN32
 			mRenderThreadID = GetCurrentThreadId();
 #endif
