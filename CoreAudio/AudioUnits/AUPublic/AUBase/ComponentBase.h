@@ -358,7 +358,7 @@ public:
 #define AUDIOCOMPONENT_REGISTER(Class, Name, Version, Type, SubType, Manufacturer, Flags, FlagsMask) \
 __attribute__((constructor)) static void Class##Registrar(void) { \
     static const AudioComponentDescription cd = AudioComponentDescriptionMake(Type, SubType, Manufacturer, Flags, FlagsMask); \
-    static const AudioComponent component = AudioComponentRegister(&cd, Name, Version, (AudioComponentFactoryFunction)Class##Factory); \
+    __unused static const AudioComponent component = AudioComponentRegister(&cd, Name, Version, (AudioComponentFactoryFunction)Class##Factory); \
 }
 
 #endif // !CA_USE_AUDIO_PLUGIN_ONLY
